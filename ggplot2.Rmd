@@ -74,6 +74,54 @@ ggplot(data = se) +
        title = "Southeast National Park Visitation by State") +
   theme_minimal() + #dark background
   theme(legend.title = element_blank()) +
+  theme(plot.title = element_text(hjust = 0.5)) +
   theme(legend.title = element_blank(),
-        axis.text.x = element_text(angle = 45, size = 14))
+        axis.text.x = element_text(angle = 45, size = 14, hjust = 1, color = "blue"))
+```
+
+```{r}
+ggplot(data = se) +
+  geom_point(aes(x = year, y = visitors, color = park_name)) +
+  facet_wrap(~ state, scales = "free") 
+```
+
+```{r}
+ggplot(data = se) +
+  geom_jitter(aes(x = park_name, y = visitors), alpha = 0.4, width = 0.1) +
+  coord_flip()
+```
+
+```{r}
+ggplot(se) +
+  geom_line(aes(x = year, y = visitors, color = park_name)) +
+  theme_bw()
+```
+
+```{r}
+ggplot(data = acadia, aes(x = year, y = visitors)) +
+  geom_point() +
+  geom_line() +
+  geom_smooth() +
+  theme_bw()
+```
+
+```{r}
+install.packages("ggthemes")
+library(ggthemes)
+```
+
+```{r}
+ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
+  geom_bar(stat = "identity", position = "dodge")
+```
+
+
+```{r}
+myplot <- ggplot(data = visit_16, aes(x = state, y = visitors, fill = park_name)) +
+  geom_bar(stat = "identity", position = "dodge")
+
+myplot
+
+ggsave (filename = "myplot.png")
+
 ```
