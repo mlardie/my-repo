@@ -102,6 +102,6 @@ gapminder %>%
     mutate(max_gdp = max(gdp))
 
 gapminder %>% 
-  filter(country)
+  filter(country) # there is another way to do this, but I didn't get it.
 ```
 
