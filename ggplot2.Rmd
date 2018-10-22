@@ -9,3 +9,71 @@ output: html_document
 
 We're learning ggplot2.  It's going to be amazing.
 I have no idea what I am doing, but that's ok.
+
+```{r}
+
+# install packages
+#install.packages('tidyverse')
+library(tidyverse)
+
+#National Parks in California
+ca <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/ca.csv") 
+
+#Acadia National Park
+acadia <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/acadia.csv")
+
+#Southeast US National Parks
+se <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/se.csv")
+
+#2016 Visitation for all Pacific West National Parks
+visit_16 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/visit_16.csv")
+
+#All Nationally designated sites in Massachusetts
+mass <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/mass.csv")
+```
+
+Start with California (`ca`) data set
+
+```{r}
+head(ca)
+View(ca)
+```
+Plot Cisitation al all CA NP over time
+
+```{r}
+ggplot(data = ca) +
+  geom_point(aes(x = year, y = visitors))
+```
+
+```{r}
+ggplot(data = ca) +
+  geom_point(aes(x = year, y = visitors, color = park_name))
+```
+
+```{r}
+ggplot(data = ca) +
+  geom_point(aes(x = year, y = visitors, color = park_name)) +
+  labs(x = "Year",
+       y = "Visitation",
+       title = "California National Park Visitation") +
+  theme_bw() + #black and white background
+  theme(legend.title = element_blank())
+```
+
+
+```{r}
+head(se)
+View(se)
+```
+
+```{r}
+ggplot(data = se) +
+  geom_point(aes(x = year, y = visitors, color = state)) +
+  labs(x = "Year",
+       y = "Visitation",
+       title = "Southeast National Park Visitation by State") +
+  theme_minimal() + #dark background
+  theme(legend.title = element_blank()) +
+  theme(legend.title = element_blank(),
+        axis.text.x = element_text(angle = 45, size = 14))
+```
