@@ -244,8 +244,6 @@ ggplot (data = continents, aes(x = year, y = mean_le, color = continent)) +
 ##spread
 
 
-
-
 ```{r}
 gap_normal <- gap_long %>% 
   spread(key = obs_type,
